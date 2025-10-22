@@ -1,0 +1,9 @@
+﻿<Window x:Class="MovieDesktopApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Movies" Height="350" Width="400">
+
+    <Grid Margin="10">
+        <ListBox ItemsSource="{Binding Movies}" DisplayMemberPath="Title"/>
+    </Grid>
+</Window>

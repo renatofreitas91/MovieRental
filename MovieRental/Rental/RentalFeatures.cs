@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MovieRental.Data;
 
 namespace MovieRental.Rental
@@ -11,19 +13,21 @@ namespace MovieRental.Rental
 			_movieRentalDb = movieRentalDb;
 		}
 
-		//TODO: make me async :(
-		public Rental Save(Rental rental)
+		//TODO: make me async :)
+		public async Task<Rental> SaveAsync(Rental rental)
 		{
-			_movieRentalDb.Rentals.Add(rental);
-			_movieRentalDb.SaveChanges();
+				await _movieRentalDb.Rentals.AddAsync(rental);
+				await _movieRentalDb.SaveChangesAsync();
 			return rental;
 		}
 
 		//TODO: finish this method and create an endpoint for it
 		public IEnumerable<Rental> GetRentalsByCustomerName(string customerName)
 		{
-			return [];
-		}
+            return  _movieRentalDb.Rentals
+       .Where(r => r.Customer.Name == customerName)
+       .ToList();
+        }
 
 	}
 }

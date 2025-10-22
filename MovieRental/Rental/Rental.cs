@@ -15,7 +15,7 @@ namespace MovieRental.Rental
 
 		public string PaymentMethod { get; set; }
 
-		// TODO: we should have a table for the customers
-		public string CustomerName { get; set; }
-	}
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; } = null!;
+    }
 }
